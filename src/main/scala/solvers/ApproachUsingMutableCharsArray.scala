@@ -14,7 +14,6 @@ abstract class ApproachUsingMutableCharsArray(sentence: String, maxPalindromes: 
       range
   }
 
-
   def same(index1:Int, index2:Int):Boolean = {
     centers(index1) == centers(index2)
   }
