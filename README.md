@@ -3,8 +3,6 @@
 
 You will find two different scala implementations of [Manacher Algorithm](https://en.wikipedia.org/wiki/Longest_palindromic_substring#Manacher.27s_algorithm) here. The algorithm is utilized for the problem of finding number of all palindrome substrings in given string.
 
-Please be gentle, this is my first scala code ever and it may not be optimal, any comments are welcome!
-
 
 The aformentioned solutions list:
 
@@ -29,3 +27,6 @@ To run tests
 ```
 sbt test
 ```
+
+
+Any comments are welcome!
