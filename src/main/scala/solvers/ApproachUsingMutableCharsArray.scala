@@ -2,7 +2,9 @@ package main.scala.solvers
 import scala.annotation.tailrec
 
 abstract class ApproachUsingMutableCharsArray(sentence: String, maxPalindromes: Long) extends Approach(sentence, maxPalindromes) {
-
+  def solve:Int
+  val inputSize = sentence.size
+  val centersSize = 2 * inputSize + 3
 
   @tailrec final def palindromLength(i: Int, range: Int):Int = {
     if (same(i - range, i + range)) {
@@ -12,16 +14,12 @@ abstract class ApproachUsingMutableCharsArray(sentence: String, maxPalindromes: 
       range
   }
 
-  def solve:Int
-
-  val inputSize = sentence.size
-  val centersSize = 2 * inputSize + 3
 
   def same(index1:Int, index2:Int):Boolean = {
     centers(index1) == centers(index2)
   }
 
-  val centers = {        
+  val centers = {
     var c = new Array[Char](centersSize)
     c(0) = '^';
     c(1) = '#';
