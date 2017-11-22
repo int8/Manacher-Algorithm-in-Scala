@@ -12,9 +12,9 @@ object Main extends App {
   val functionalLinearImmutableTime = Utils.time (new FunctionalLinearImmutable(sentence, 1000000000))
   val imperativeLinearTime = Utils.time (new ImperativeLinear(sentence, 1000000000))
 
-  println("Quadratic solver takes " + quadraticTime + "ms to finish for sentence of length " + sentenceLength + " composed of " + distinctChars  +" distinct chars")
-  println("Functional Linear solver takes " + functionalLinearImmutableTime + "ms to finish for sentence of length " + sentenceLength + " composed of " + distinctChars  +" distinct chars")
-  println("Imperative linear solver takes " + imperativeLinearTime + "ms to finish for sentence of length " + sentenceLength + " composed of " + distinctChars  +" distinct chars")
+  println("Quadratic solver takes " + quadraticTime + " ms to finish for sentence of length " + sentenceLength + " composed of " + distinctChars  +" distinct chars")
+  println("Functional Linear solver takes " + functionalLinearImmutableTime + " ms to finish for sentence of length " + sentenceLength + " composed of " + distinctChars  +" distinct chars")
+  println("Imperative linear solver takes " + imperativeLinearTime + " ms to finish for sentence of length " + sentenceLength + " composed of " + distinctChars  +" distinct chars")
 
   
 }
