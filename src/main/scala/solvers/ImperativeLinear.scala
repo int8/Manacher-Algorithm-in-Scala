@@ -14,12 +14,12 @@ class ImperativeLinear(sentence: String, maxPalindromes: Long) extends ApproachU
     var c = 0 // current palindrome that reaches i with radius
     var radius = 0 // radius of the current palindrome
     var sum = 0 // current sum
-    while (centers(i) != '$') {
+    while (!isSentenceEnding(i)) {
       if (sum > maxPalindromes) {
         return - 1 // if sum reaches max, return -1
       }
       val minLength = if (c + radius > i) Math.min(c + radius - i, P(2 * c - i)) else 1 // minimum length of palindrome around current index, the trick sits here
-      val maxLength = this.palindromLength(i, minLength) // look for palindrome
+      val maxLength = this.palindromeRadiusAtCenter(i, minLength) // look for palindrome
       if (i + maxLength > c + radius) { // shall we update center and radius
         c = i
         radius = maxLength         

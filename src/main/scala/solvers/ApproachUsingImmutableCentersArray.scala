@@ -14,9 +14,9 @@ import scala.annotation.tailrec
 abstract class ApproachUsingImmutableCentersArray(sentence: String, maxPalindromes: Long) extends Approach(sentence, maxPalindromes) {
 
   /** tail recursive method, expanding around given index in centers until different chars occur */
-  @tailrec final def palindromLength(i: Int, range: Int):Int = {
+  @tailrec final def palindromeRadiusAtCenter(i: Int, range: Int):Int = {
     if (same(i - range, i + range)) {
-      palindromLength(i, range + 1)
+      palindromeRadiusAtCenter(i, range + 1)
     }
     else
       range
@@ -34,16 +34,17 @@ abstract class ApproachUsingImmutableCentersArray(sentence: String, maxPalindrom
   }
 
   /** true if center it given index is Space */
-  def isSpace(index:Int):Boolean = centers(index) match {
-    case Space => true
-    case _ => false
-  }
+  def isSpace(index:Int):Boolean = centers(index) == Space
+
 
   /** true if center it given index is Letter */
   def isLetter(index:Int): Boolean = centers(index) match {
     case _:Letter => true
     case _ => false
   }
+
+  /** true if center it given index is String Ending */
+  def isSentenceEnding(index:Int): Boolean = centers(index) == StringEnding
 
   /** data structure represening all potential centers of palindromes */
   val centers = {
