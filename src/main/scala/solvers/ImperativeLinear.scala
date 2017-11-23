@@ -8,6 +8,11 @@ package main.scala.solvers
   */
 class ImperativeLinear(sentence: String, maxPalindromes: Long) extends ApproachUsingMutableCharsArray(sentence, maxPalindromes) {
 
+  /** data structure represening lengths of palindromes at different centers - same length as centers  */
+  val P: Array[Int] = {
+    new Array[Int](centersSize)
+  }
+
   /** manacher algorithm + summing over all lengths  */
  def manacherSum:Int = {        
     var i = 1 // current index

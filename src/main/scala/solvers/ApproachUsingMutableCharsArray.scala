@@ -19,13 +19,12 @@ abstract class ApproachUsingMutableCharsArray(sentence: String, maxPalindromes: 
   val centersSize = 2 * inputSize + 3
 
   /** tail recursive method, expanding around given index in centers until different chars occur */
-  @tailrec final def palindromeRadiusAtCenter(i: Int, range: Int):Int = {
+  @tailrec final def palindromeRadiusAtCenter(i: Int, range: Int):Int =
     if (same(i - range, i + range)) {
       palindromeRadiusAtCenter(i, range + 1)
     }
-    else
-      range
-  }
+    else range
+
   /** determines whether two chars are the same */
   def same(index1:Int, index2:Int):Boolean = {
     centers(index1) == centers(index2)
@@ -49,8 +48,5 @@ abstract class ApproachUsingMutableCharsArray(sentence: String, maxPalindromes: 
     c
   }
 
-  /** data structure represening lengths of palindromes at different centers - same length as centers  */
-  val P = {
-    new Array[Int](centersSize)
-  }
+
 }

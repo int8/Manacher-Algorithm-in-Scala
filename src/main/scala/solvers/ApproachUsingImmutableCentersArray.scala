@@ -1,9 +1,7 @@
 package main.scala.solvers
 
 import main.scala.symbols._
-
 import scala.annotation.tailrec
-
 
 /** Abstract class for palindromic factorization solvers - approach using Immutable Centers Array (Vector in fact)
   *
@@ -14,13 +12,12 @@ import scala.annotation.tailrec
 abstract class ApproachUsingImmutableCentersArray(sentence: String, maxPalindromes: Long) extends Approach(sentence, maxPalindromes) {
 
   /** tail recursive method, expanding around given index in centers until different chars occur */
-  @tailrec final def palindromeRadiusAtCenter(i: Int, range: Int):Int = {
+  @tailrec final def palindromeRadiusAtCenter(i: Int, range: Int):Int =
     if (same(i - range, i + range)) {
       palindromeRadiusAtCenter(i, range + 1)
     }
     else
       range
-  }
 
   /** solves palindromic substring counting problem */
   def solve:Int
@@ -29,13 +26,10 @@ abstract class ApproachUsingImmutableCentersArray(sentence: String, maxPalindrom
   val inputSize = sentence.size
 
   /** determines whether two centers (letters or spaces) are the same */
-  def same(index1:Int, index2:Int):Boolean = {
-    centers(index1) == centers(index2)
-  }
+  def same(index1:Int, index2:Int):Boolean = centers(index1) == centers(index2)
 
   /** true if center it given index is Space */
   def isSpace(index:Int):Boolean = centers(index) == Space
-
 
   /** true if center it given index is Letter */
   def isLetter(index:Int): Boolean = centers(index) match {
@@ -47,7 +41,7 @@ abstract class ApproachUsingImmutableCentersArray(sentence: String, maxPalindrom
   def isSentenceEnding(index:Int): Boolean = centers(index) == StringEnding
 
   /** data structure represening all potential centers of palindromes */
-  val centers = {
+  val centers:Vector[Center] = {
     /** recursive function building centers */
     @tailrec def buildCenters(i: Int, v:Vector[Center]):Vector[Center] = {
       if (i == inputSize) return v
