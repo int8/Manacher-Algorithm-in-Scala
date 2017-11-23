@@ -9,9 +9,10 @@ import scala.annotation.tailrec
   */
 class FunctionalLinearImmutable(sentence: String, maxPalindromes: Long) extends ApproachUsingImmutableCentersArray(sentence, maxPalindromes) {
   /** manacher algorithm + summing over all lengths
-    * @param P a Vector with radiuses of previous palindromes found up to P.length in a string
+    * @param P a Vector with radiuses of previous palindromes found up to P.length (i)in a string
     * @param c a center of the palindrome that reaches current index i
     * @param radius radius of current palindrome ( the one centered at c )
+    * @param i index being currently processed 
     * @param acc sum of palindromes up to index i
     * */
   @tailrec final def manacherSum(P: Vector[Int], c: Int, radius: Int, i: Int, acc:Int):Int = {
