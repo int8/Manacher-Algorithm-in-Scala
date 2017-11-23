@@ -29,4 +29,11 @@ sbt test
 ```
 
 
+To generate (still poor) documentation with scaladocs
+```
+sbt doc
+```
+
+
+
 Any comments are welcome!
