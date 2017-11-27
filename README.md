@@ -23,7 +23,7 @@ Let's try to explain why:
 
 At the very end of palindrome search when we reach index close to ```N```, if palindromes are short - we are going to request very recent indices (non siginificantly lower than ```N```), therefore each lookup for a mirror palindrome length (```minLength```) within main palindrome has complexity ```~ log32(N)```. Moreover each palindrome search involves several lookups. Anyways, we get quite a few lookups at each center of complexity ```~log32(N)```. For some pairs ```(N,K)``` it may result in complexity worse than naive quadratic. For a pair: ```N = 10^6``` (```log32(10^6) =~ 4```), ```K = 4``` at each iteration (center) everytime we request mirror value (+values while expanding palindrome) we in fact perform ```~4``` operations instead of one. This overhead is critical and leads to quadratic solution being better. I think, it's therefore safe bet to claim that functional linear solution wins whenever there is lots of palindromes + they are much longer than ```log32(N```).
 
-
+This overhead does not hold for  [imperative implementation](https://github.com/int8/Manacher-Algorithm-in-Scala/blob/master/src/main/scala/solvers/ImperativeLinear.scala) where mutable arrays are used for centers/palindromes storage with constant access complexity ```O(1)```
 
 To run main app
 ```
