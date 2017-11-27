@@ -15,7 +15,14 @@ There is also [quadratic solution](https://github.com/int8/Manacher-Algorithm-in
 
 
 
-Interestingly, functional implementation suffers from Vectors' operators overheads. As a result for some very random sequences quadratic may outperform linear solution (especially when there is very small number of palindromes in a string)
+Interestingly, functional implementation suffers from Vectors' operators overheads. As a result for some very random sequences quadratic may outperform linear solution (especially when there is very small number of short palindromes in a string).
+
+Let's try to explain why:
+
+[Functional implementation](https://github.com/int8/Manacher-Algorithm-in-Scala/blob/master/src/main/scala/solvers/FunctionalLinearImmutable.scala) uses Vector as a storage for centers and palindromes radiuses at these centers. Assuming K being maximum length of a palindrome and N being size of the input sentence and k << N, interesting thing happens:
+
+At the very end of palindrome search when we reach index close to N, if palindromes are short - it means we are going to request very recent indices (non siginificantly lower than N), therefore each lookup for a mirror palindrome within main palindrome has complexity ~ log32(N). Moreover each palindrome search involves several lookups. Anyways, we get quite a few lookups at each center of complexity log32(N). For some pairs (N,k) it may result in complexity worse than naive quadratic. For example: N = 1000000 (Log32(10^6) =~ 4), K = 4 (such K happens sometimes when you randomly choose input sentence from 24 chars), at each iteration (center) everytime we request mirror value (+values at center while expanding palindrome) we in fact perform ~4 operations. This overhead is critical and leads to quadratic solution being better. I think, it's therefore safe to claim that functional linear solution wins whenever there is lots of palindromes + they are much longer than log32(N).
+
 
 
 To run main app
