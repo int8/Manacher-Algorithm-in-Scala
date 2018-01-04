@@ -8,16 +8,10 @@ object Utils {
 
   /** sums the sequence of Int until maximum is reached, then returns -1 otherwise returns sum */
   def sumUntilLimit(l: Seq[Int], maximum:Long): Int = {
-    var sum = 0
-    var i = 0
-    val length = l.length
-    while (i < length)
-    {
-      sum += l(i)
-      i = i + 1
-      if (sum >= maximum) return -1
+    l.foldLeft(0) {
+      case (sum, i) if (sum <= maximum) => sum + i
+      case _ => return -1
     }
-    sum
   }
 
   /** counts time for solver to solve a problem - in milliseconds */
